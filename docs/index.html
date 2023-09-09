@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+
+
+<!-- === Header Starts === -->
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <title>GaitRef</title>
+
+  <link href="./assets/bootstrap.min.css" rel="stylesheet">
+  <link href="./assets/font.css" rel="stylesheet" type="text/css">
+  <link href="./assets/style.css" rel="stylesheet" type="text/css">
+</head>
+<!-- === Header Ends === -->
+
+
+<body>
+
+
+<!-- === Home Section Starts === -->
+<div class="section">
+  <!-- === Title Starts === -->
+  <div class="header">
+    <div class="logo">
+      <a href="https://sites.usc.edu/iris-cvlab/" target="_blank"><img src="./assets/USC.png"></a>
+    </div>
+    <div class="title", style="padding-top: 25pt;">  <!-- Set padding as 10 if title is with two lines. -->
+      GaitRef: Gait Recognition with Refined Sequential Skeletons
+    </div>
+  </div>
+  <!-- === Title Ends === -->
+  <div class="author">
+    <a href="https://haidongz-usc.github.io/" target="_blank">Haidong Zhu</a>*,&nbsp;
+    <a href="https://zoeyzheng0.github.io/" target="_blank">Wanrong Zheng</a>*,&nbsp;
+    <a href="https://zhaohengz.github.io/" target="_blank">Zhaoheng Zheng</a>,&nbsp;
+    <a href="https://sites.usc.edu/iris-cvlab/professor-ram-nevatia/" target="_blank">Ram Nevatia</a>,&nbsp;
+  </div>
+  <div class="institution">
+    University of Southern California
+  </div>
+  <div class="link">
+    <a href="https://arxiv.org/pdf/2304.07916.pdf" target="_blank">[Paper]</a>&nbsp;
+    <a href="https://github.com/ZoeyZheng0/GaitRef/" target="_blank">[Code]</a>
+  </div>
+  <div class="teaser">
+    <img src="./assets/teaser.png">
+  </div>
+</div>
+<!-- === Home Section Ends === -->
+
+
+<!-- === Overview Section Starts === -->
+<div class="section">
+  <div class="title">Overview</div>
+  <div class="body">
+    This work combines the silhouettes and skeletons and refines the framewise joint predictions for gait recognition. With temporal information from the silhouette sequences, we show that the refined skeletons can improve gait recognition performance without extra annotations. We compare our methods on four public datasets, CASIA-B, OUMVLP, Gait3D and GREW, and show state-of-the-art performance.  </div>
+</div>
+<!-- === Overview Section Ends === -->
+
+
+<!-- === Approach Section Starts === -->
+<div class="section">
+  <div class="title">Approach</div>
+  <div class="body">
+    <!-- Adjust the number of rows and columns (EVERY project differs). -->
+    <table width="100%" style="margin: 20pt 0; text-align: center;">
+      <tr>
+        <td><img src="./assets/pipeline.png" width="95%"></td>
+      </tr>
+    </table>
+    Our proposed architecture for GaitRef and GaitMix. Trapezoids are trainable modules, and modules of the same color in the same model share the weight. Dashed lines are the operation of feature copying. S and J are the input silhouettes and skeletons. F<sub>S</sub> represents silhouette features, while F<sub>J</sub> and F<sub>J∗</sub> represent skeleton features from input and refined skeletons, respectively.
+
+    <table width="100%" style="margin: 20pt 0; text-align: center;">
+      <tr>
+        <td><img src="./assets/skeleton.png" width="95%"></td>
+      </tr>
+    </table>
+
+    Architecture of the skeleton correction network. F<sub>J</sub><sup>P</sup> is the skeleton features after average pooling. We concatenate the joint position J with its feature F<sub>J</sub> along with the global feature after pooling F<sub>J</sub><sup>P</sup> and the silhouette feature F<sub>S</sub> before sending it into the decoder for calculating the position difference ∆J for each frame. Decoders at different timestamps share weights.
+  </div>
+</div>
+<!-- === Approach Section Ends === -->
+
+<!-- === Result Section Starts === -->
+<div class="section">
+  <div class="title">Results</div>
+  <div class="body">
+    <!-- Adjust the number of rows and columns (EVERY project differs). -->
+    <table width="100%" style="margin: 20pt 0; text-align: center;">
+      <tr>
+        <td><img src="./assets/refine.png" width="95%"></td>
+      </tr>
+    </table>
+    Visualization of successful and failure refined skeletons with GaitRef. For each example, from left to right, we have original skeletons, silhouette of the nearby timestamp and corrected skeletons from skeleton correction network.
+  </div>
+</div>
+<!-- === Result Section Ends === -->
+
+
+<!-- === Reference Section Starts === -->
+<div class="section">
+  <div class="bibtex">BibTeX</div>
+<pre>
+  @misc{zhu2023gaitref,
+    title={GaitRef: Gait Recognition with Refined Sequential Skeletons}, 
+    author={Haidong Zhu and Wanrong Zheng and Zhaoheng Zheng and Ram Nevatia},
+    year={2023},
+    eprint={2304.07916},
+    archivePrefix={arXiv},
+    primaryClass={cs.CV}
+}
+</pre>
+
+  <!-- BZ: we should give other related work enough credits, -->
+  <!--     so please include some most relevant work and leave some comment to summarize work and the difference. -->
+  <div class="ref">Related Work</div>
+  <div class="citation">
+    <div class="image"><img src="./assets/gaitgraph.png"></div>
+    <div class="comment">
+      <a href="https://arxiv.org/pdf/2101.11228.pdf" target="_blank">
+        T. Teepe, A. Khan, J. Gilg, F. Herzog, S. H¨ormann, and G. Rigoll.
+        GaitGraph: Graph Convolutional Network for Skeleton-Based Gait Recognition
+        In ICIP, pages 2314–2318, 2021. </a><br>
+      <b>Comment:</b>
+      Combines skeleton poses with Graph Convolutional Network (GCN) to obtain a modern model-based approach for gait recognition.
+    </div>
+  </div>
+
+  <div class="citation">
+    <div class="image"><img src="./assets/stgcn.png"></div>
+    <div class="comment">
+      <a href="https://arxiv.org/pdf/1801.07455.pdf" target="_blank">
+        S. Yan, Y. Xiong, and D. Lin.
+        Spatial temporal graph convolutional networks for skeleton-based action recognition
+        AAAI, 2018.</a><br>
+      <b>Comment:</b>
+      Proposed a novel model of dynamic skeletons called SpatialTemporal Graph Convolutional Networks (ST-GCN).
+    </div>
+  </div>
+
+
+</div>
+<!-- === Reference Section Ends === -->
+
+
+</body>
+</html>
